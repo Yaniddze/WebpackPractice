@@ -6,7 +6,7 @@ module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   resolve: {
-    extensions: ['.ts', '.tsx', 'js']
+    extensions: ['.ts', '.tsx', '.js', '.jsx',]
   },
   module: {
     rules: [
@@ -38,6 +38,6 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'build'),
     compress: true,
-    part: 9000,
+    port: 9000,
   }
-}
+};
