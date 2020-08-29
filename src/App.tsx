@@ -6,7 +6,26 @@ type ButtonPropTypes = {
 }
 
 const Button = styled.button<ButtonPropTypes>`
-  background-color: ${(props) => (props.isBlack ? 'black' : 'red')};
+  ${({ isBlack }: ButtonPropTypes) => {
+    if (isBlack) {
+      return `
+        background-color: black;
+        color: white;
+      `;
+    } 
+    return `
+      background-color: white;
+      color: blue;
+    `;
+  }};
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid black;
+  
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -14,7 +33,12 @@ const Wrapper = styled.div`
 `;
 
 export const App: FC = () => (
-  <div>
-    Application!
-  </div>
+  <Wrapper>
+    <Button isBlack>
+      Cool text
+    </Button>
+    <Button isBlack={false}>
+      Not cool text
+    </Button>
+  </Wrapper>
 );
