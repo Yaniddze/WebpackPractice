@@ -1,30 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
 
-type ButtonPropTypes = {
-  isBlack: boolean;
-}
-
-const Button = styled.button<ButtonPropTypes>`
-  background-color: ${props => props.isBlack? 'black': 'red'};
-`;
-
-const Wrapper = styled.div`
-  margin: 10px;
-`;
-
+import { App } from './App';
 
 ReactDOM.render(
-  <div>
-    <Wrapper>
-      <Button isBlack>
-        Cool
-      </Button>
-      <Button isBlack={false}>
-        Cool
-      </Button>
-    </Wrapper>
-  </div>,
-  document.getElementById('root')
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root'),
 );
