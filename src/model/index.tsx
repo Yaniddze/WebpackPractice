@@ -1,3 +1,3 @@
-export function doSomeRequest(): Promise<string> {
-  return Promise.resolve('Success');
+export function doSomeRequest(request: string): Promise<string> {
+  return Promise.resolve(request);
 }

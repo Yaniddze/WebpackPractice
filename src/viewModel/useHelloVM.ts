@@ -1,23 +1,31 @@
 // Core
-import { useState } from 'react';
+import { observable } from 'mobx';
 
 // Model
 import { doSomeRequest } from '../model';
 
 type ReturnType = {
-  doRequest: () => void;
-  data: string;
+  doRequest: (request: string) => void;
+  data: Data;
 };
 
-export const useHelloVM = (): ReturnType => {
-  const [data, setData] = useState('');
+type Data = {
+  info: string;
+};
 
-  const doRequest = () => {
-    doSomeRequest().then((result) => setData(result));
+const storage = observable({
+  info: '',
+});
+
+export const useHelloVM = (): ReturnType => {
+  const doRequest = (request: string) => {
+    doSomeRequest(request).then((result) => {
+      storage.info = result;
+    });
   };
 
   return {
-    data,
+    data: storage,
     doRequest,
   };
 };

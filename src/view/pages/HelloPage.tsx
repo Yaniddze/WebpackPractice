@@ -1,5 +1,7 @@
 // Core
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
+import { useObserver } from 'mobx-react';
 
 // VM
 import { useHelloVM } from '../../viewModel/useHelloVM';
@@ -11,10 +13,10 @@ export const HelloPage: FC = () => {
   const { doRequest, data } = useHelloVM();
 
   const btnClickHandler = () => {
-    doRequest();
+    doRequest(`${data.info} (new info)`);
   };
 
-  return (
+  return useObserver(() => (
     <div>
       Нажми на кнопку: будет круто!
       <div>
@@ -23,8 +25,13 @@ export const HelloPage: FC = () => {
         </Button>
       </div>
       <div>
-        {data}
+        {data.info}
       </div>
+      <Link to="/home">
+        <Button isBlack={false}>
+          Назад
+        </Button>
+      </Link>
     </div>
-  );
+  ));
 };
